@@ -25,7 +25,7 @@ const getDistance = async () => {
     });
   });
 
-  await watch();
+  await watch;
   const stopTime = Date.now();
   console.log('stopTime:', startTime);
 
