@@ -8,22 +8,28 @@ const sleep = (ms) => {
 };
 
 const getDistance = async () => {
+  const startTime = Date.now();
+  console.log('startTime:', startTime);
   trigger.writeSync(1);
-  await sleep(0.01);
+
+  const watch = new Promise((resolve, reject) => {
+    echo.watch((err, value) => {
+      if (err) {
+        reject(err);
+      }
+
+      if (value === 1) {
+        echo.unwatchAll();
+        resolve();
+      }
+    });
+  });
+
+  await watch();
+  const stopTime = Date.now();
+  console.log('stopTime:', startTime);
+
   trigger.writeSync(0);
-
-  let startTime;
-  let stopTime;
-
-  while (echo.readSync() === 0) {
-    console.log('echo off:', echo.readSync());
-    startTime = Date.now();
-  }
-
-  while (echo.readSync() === 1) {
-    console.log('echo on:', echo.readSync());
-    stopTime = Date.now();
-  }
 
   const timeElapsed = stopTime - startTime;
   const distance = (timeElapsed * 34300) / 2;
