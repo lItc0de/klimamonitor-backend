@@ -26,6 +26,8 @@ const getDistance = async () => {
   const timeElapsed = stopTime - startTime;
   const distance = (timeElapsed * 34300) / 2;
 
+  console.log(distance);
+
   return distance;
 }
 
