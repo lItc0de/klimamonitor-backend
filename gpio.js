@@ -18,6 +18,8 @@ const getDistance = async () => {
         reject(err);
       }
 
+      console.log('value:', value);
+
       if (value === 1) {
         echo.unwatchAll();
         resolve();
