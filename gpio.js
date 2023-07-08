@@ -12,7 +12,7 @@ const getDistance = async () => {
   console.log('startTime:', startTime);
   trigger.writeSync(1);
 
-  const watch = new Promise((resolve, reject) => {
+  const watch = () => new Promise((resolve, reject) => {
     echo.watch((err, value) => {
       if (err) {
         reject(err);
@@ -29,7 +29,7 @@ const getDistance = async () => {
 
   console.log('read:', echo.readSync());
 
-  await watch;
+  await watch();
   const stopTime = Date.now();
   console.log('stopTime:', startTime);
 
