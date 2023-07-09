@@ -111,10 +111,12 @@ const test = async () => {
   }
 
   console.log('In between');
+  process.hrtime(startTime);
 
   while (echo.readSync() === 1) {
     duration = process.hrtime(startTime);
   }
+
 
   console.log('Duration:', duration);
 
