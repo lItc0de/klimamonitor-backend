@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "led": "node gpio.js"
+    "led": "node gpio.js",
+    "gpio": "node gpio2.js"
   },
   "author": "",
   "license": "ISC",

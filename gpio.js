@@ -87,47 +87,31 @@ const getDistance = async () => {
 // const interval = setInterval(getDistance, 2000);
 
 const test = async () => {
-  console.log('echoooooo1', echo.readSync());
+  let startTime;
+  let endTime;
+  trigger.writeSync(0);
+
+  console.log('Waiting for sensor to settle');
+
+  await sleep(2000);
+
+  console.log('Calculating distance');
 
   trigger.writeSync(1);
   await sleep(0.01);
-
-  console.log('echoooooo2', echo.readSync());
-
-  await sleep(1);
-
-  console.log('echoooooo3', echo.readSync());
-
-  await sleep(10);
-
-  console.log('echoooooo4', echo.readSync());
-
-  await sleep(100);
-
-  console.log('echoooooo5', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo6', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo7', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo8', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo9', echo.readSync());
-
   trigger.writeSync(0);
 
-  await sleep(1000);
+  while (echo.readSync() === 0) {
+    startTime = Date.now();
+  }
 
-  console.log('echoooooo10', echo.readSync());
-  testLed.writeSync(0);
+  while (echo.readSync() === 1) {
+    endTime = Date.now();
+  }
+
+  const duration = endTime - startTime;
+  const distance = Math.round(duration * 17150);
+  console.log('Distance:', distance, 'cm');
 }
 
 test();
