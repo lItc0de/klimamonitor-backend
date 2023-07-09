@@ -124,6 +124,8 @@ const test = async () => {
 
   const distance = Math.round(duration[0] * 34300 + (duration[1] * 34300) * 10^-9) / 2;
   console.log('Distance:', distance, 'cm');
+
+  echo.unwatchAll();
 }
 
 test();
@@ -131,5 +133,5 @@ test();
 process.on('SIGINT', (_) => {
   trigger.unexport();
   echo.unexport();
-  clearInterval(interval);
+  // clearInterval(interval);
 });
