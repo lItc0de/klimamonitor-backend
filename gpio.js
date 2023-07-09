@@ -109,11 +109,11 @@ const test = async () => {
 
   console.log('echoooooo8', echo.readSync());
 
-  await sleep(0.1);
+  await sleep(1);
 
   console.log('echoooooo9', echo.readSync());
 
-  await sleep(1);
+  await sleep(10);
 
   console.log('echoooooo10', echo.readSync());
 }
