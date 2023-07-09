@@ -71,7 +71,11 @@ const getDistance = async () => {
   return distance;
 }
 
+console.log('echoooooo', echo.readSync());
+
 const interval = setInterval(getDistance, 2000);
+
+console.log('echoooooo 2', echo.readSync());
 
 process.on('SIGINT', (_) => {
   trigger.unexport();
