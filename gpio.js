@@ -88,11 +88,7 @@ const getDistance = async () => {
 
 const test = async () => {
   let startTime;
-  let endTime;
-
-  let lowTimer = 0;
-  let highTimer = 0;
-
+  let duration;
 
   trigger.writeSync(0);
 
@@ -107,22 +103,19 @@ const test = async () => {
   trigger.writeSync(0);
 
   while (echo.readSync() === 0) {
-    startTime = performance.now();
-    lowTimer += 1;
+    startTime = process.hrtime();
   }
 
   while (echo.readSync() === 1) {
-    endTime = performance.now();
-    highTimer += 1;
+    duration = process.hrtime(startTime);
   }
 
-  const duration = endTime - startTime;
   console.log('Duration:', duration);
-  const distance = Math.round(duration * 17150);
-  console.log('Distance:', distance, 'cm');
 
-  console.log('Low:', lowTimer);
-  console.log('High:', highTimer);
+
+
+  const distance = Math.round(duration[0] * 34300 + (duration[1] * 34300) * 10^-9) / 2;
+  console.log('Distance:', distance, 'cm');
 }
 
 test();
