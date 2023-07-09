@@ -3,7 +3,7 @@ const Gpio = require('onoff').Gpio;
 const trigger = new Gpio(7, 'out');
 const echo = new Gpio(11, 'in', 'both');
 
-const testLed = new Gpio(21, 'out');
+const testLed = new Gpio(17, 'out');
 
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
