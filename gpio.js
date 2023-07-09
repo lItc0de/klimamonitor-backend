@@ -106,6 +106,8 @@ const test = async () => {
     console.log('Change', value);
   });
 
+  startTime = process.hrtime();
+
   while (echo.readSync() === 0) {
     startTime = process.hrtime();
   }
@@ -120,9 +122,8 @@ const test = async () => {
 
   console.log('Duration:', duration);
 
+  const distance = Math.round((duration[0] + duration[1] / Math.pow(10,9)) * 3400 / 2);
 
-
-  const distance = Math.round(duration[0] * 34300 + (duration[1] * 34300) * 10^-9) / 2;
   console.log('Distance:', distance, 'cm');
 
   echo.unwatchAll();
