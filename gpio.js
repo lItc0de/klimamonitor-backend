@@ -1,40 +1,79 @@
-const Gpio = require('onoff').Gpio;
+const Gpio = require('../onoff').Gpio; // Gpio class
+const led = new Gpio(17, 'out'); // Export GPIO17 as an output
 
-const trigger = new Gpio(7, 'out');
-const echo = new Gpio(11, 'in', 'both');
+// Toggle the state of the LED connected to GPIO17 every 200ms
+const iv = setInterval((_) => led.writeSync(led.readSync() ^ 1), 200);
 
-const testLed = new Gpio(17, 'out');
+// Stop blinking the LED after 5 seconds
+setTimeout((_) => {
+  clearInterval(iv); // Stop blinking
+  led.unexport(); // Unexport GPIO and free resources
+}, 5000);
 
-const sleep = (ms) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+// const Gpio = require('onoff').Gpio;
+
+// const trigger = new Gpio(7, 'out');
+// const echo = new Gpio(11, 'in', 'both');
+
+// const testLed = new Gpio(17, 'out');
+
+// const sleep = (ms) =>
+//   new Promise((resolve) => setTimeout(resolve, ms));
+
+// // const getDistance = async () => {
+// //   const startTime = Date.now();
+// //   console.log('startTime:', startTime);
+// //   trigger.writeSync(1);
+
+// //   const watch = () => new Promise((resolve, reject) => {
+// //     echo.watch((err, value) => {
+// //       if (err) {
+// //         reject(err);
+// //       }
+
+// //       console.log('value:', value);
+
+// //       if (value === 1) {
+// //         echo.unwatchAll();
+// //         resolve();
+// //       }
+// //     });
+// //   });
+
+// //   console.log('read:', echo.readSync());
+
+// //   await watch();
+// //   const stopTime = Date.now();
+// //   console.log('stopTime:', startTime);
+
+// //   trigger.writeSync(0);
+
+// //   const timeElapsed = stopTime - startTime;
+// //   const distance = (timeElapsed * 34300) / 2;
+
+// //   console.log('time elapsed:', timeElapsed);
+// //   console.log('distance:', distance);
+
+// //   return distance;
+// // };
+
+// // const interval = setInterval(getDistance, 1000);
 
 // const getDistance = async () => {
-//   const startTime = Date.now();
-//   console.log('startTime:', startTime);
 //   trigger.writeSync(1);
-
-//   const watch = () => new Promise((resolve, reject) => {
-//     echo.watch((err, value) => {
-//       if (err) {
-//         reject(err);
-//       }
-
-//       console.log('value:', value);
-
-//       if (value === 1) {
-//         echo.unwatchAll();
-//         resolve();
-//       }
-//     });
-//   });
-
-//   console.log('read:', echo.readSync());
-
-//   await watch();
-//   const stopTime = Date.now();
-//   console.log('stopTime:', startTime);
-
+//   await sleep(0.01);
 //   trigger.writeSync(0);
+
+//   let startTime = Date.now();
+//   let stopTime = Date.now();
+
+//   while (echo.readSync() === 0) {
+//     startTime = Date.now();
+//   }
+
+//   while (echo.readSync() === 1) {
+//     stopTime = Date.now();
+//   }
 
 //   const timeElapsed = stopTime - startTime;
 //   const distance = (timeElapsed * 34300) / 2;
@@ -43,91 +82,62 @@ const sleep = (ms) =>
 //   console.log('distance:', distance);
 
 //   return distance;
-// };
+// }
 
-// const interval = setInterval(getDistance, 1000);
+// // console.log('echoooooo', echo.readSync());
 
+// // const interval = setInterval(getDistance, 2000);
 
-const getDistance = async () => {
-  trigger.writeSync(1);
-  await sleep(0.01);
-  trigger.writeSync(0);
+// const test = async () => {
+//   testLed.writeSync(1);
 
-  let startTime = Date.now();
-  let stopTime = Date.now();
+//   console.log('echoooooo1', echo.readSync());
 
-  while (echo.readSync() === 0) {
-    startTime = Date.now();
-  }
+//   trigger.writeSync(1);
+//   await sleep(0.01);
 
-  while (echo.readSync() === 1) {
-    stopTime = Date.now();
-  }
+//   console.log('echoooooo2', echo.readSync());
 
-  const timeElapsed = stopTime - startTime;
-  const distance = (timeElapsed * 34300) / 2;
+//   await sleep(1);
 
-  console.log('time elapsed:', timeElapsed);
-  console.log('distance:', distance);
+//   console.log('echoooooo3', echo.readSync());
 
-  return distance;
-}
+//   await sleep(10);
 
-// console.log('echoooooo', echo.readSync());
+//   console.log('echoooooo4', echo.readSync());
 
-// const interval = setInterval(getDistance, 2000);
+//   await sleep(100);
 
+//   console.log('echoooooo5', echo.readSync());
 
-const test = async () => {
-  testLed.writeSync(1);
+//   await sleep(1000);
 
-  console.log('echoooooo1', echo.readSync());
+//   console.log('echoooooo6', echo.readSync());
 
-  trigger.writeSync(1);
-  await sleep(0.01);
+//   await sleep(1000);
 
-  console.log('echoooooo2', echo.readSync());
+//   console.log('echoooooo7', echo.readSync());
 
-  await sleep(1);
+//   await sleep(1000);
 
-  console.log('echoooooo3', echo.readSync());
+//   console.log('echoooooo8', echo.readSync());
 
-  await sleep(10);
+//   await sleep(1000);
 
-  console.log('echoooooo4', echo.readSync());
+//   console.log('echoooooo9', echo.readSync());
 
-  await sleep(100);
+//   trigger.writeSync(0);
 
-  console.log('echoooooo5', echo.readSync());
+//   await sleep(1000);
 
-  await sleep(1000);
+//   console.log('echoooooo10', echo.readSync());
+//   testLed.writeSync(0);
+// }
 
-  console.log('echoooooo6', echo.readSync());
+// test();
 
-  await sleep(1000);
-
-  console.log('echoooooo7', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo8', echo.readSync());
-
-  await sleep(1000);
-
-  console.log('echoooooo9', echo.readSync());
-
-  trigger.writeSync(0);
-
-  await sleep(1000);
-
-  console.log('echoooooo10', echo.readSync());
-  testLed.writeSync(0);
-}
-
-test();
-
-process.on('SIGINT', (_) => {
-  trigger.unexport();
-  echo.unexport();
-  clearInterval(interval);
-});
+// process.on('SIGINT', (_) => {
+//   trigger.unexport();
+//   echo.unexport();
+//   clearInterval(interval);
+// });
