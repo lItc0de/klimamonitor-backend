@@ -3,6 +3,8 @@ const Gpio = require('onoff').Gpio;
 const trigger = new Gpio(7, 'out');
 const echo = new Gpio(11, 'in', 'both');
 
+const testLed = new Gpio(21, 'out');
+
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -77,6 +79,8 @@ const getDistance = async () => {
 
 
 const test = async () => {
+  testLed.writeSync(1);
+
   console.log('echoooooo1', echo.readSync());
 
   trigger.writeSync(1);
@@ -117,9 +121,8 @@ const test = async () => {
   await sleep(1000);
 
   console.log('echoooooo10', echo.readSync());
+  testLed.writeSync(0);
 }
-
-
 
 test();
 
