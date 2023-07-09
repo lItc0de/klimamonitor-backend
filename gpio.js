@@ -8,7 +8,7 @@ const iv = setInterval((_) => led.writeSync(led.readSync() ^ 1), 200);
 setTimeout((_) => {
   clearInterval(iv); // Stop blinking
   led.unexport(); // Unexport GPIO and free resources
-}, 5000);
+}, 30000);
 
 // const Gpio = require('onoff').Gpio;
 
