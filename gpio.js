@@ -13,7 +13,7 @@
 const Gpio = require('onoff').Gpio;
 
 const trigger = new Gpio(17, 'out');
-const echo = new Gpio(24, 'in');
+const echo = new Gpio(24, 'in', 'rising');
 
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
@@ -102,9 +102,15 @@ const test = async () => {
   await sleep(0.01);
   trigger.writeSync(0);
 
+  echo.watch((err, value) => {
+    console.log('Change', value);
+  });
+
   while (echo.readSync() === 0) {
     startTime = process.hrtime();
   }
+
+  console.log('In between');
 
   while (echo.readSync() === 1) {
     duration = process.hrtime(startTime);
