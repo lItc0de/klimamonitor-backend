@@ -89,6 +89,11 @@ const getDistance = async () => {
 const test = async () => {
   let startTime;
   let endTime;
+
+  let lowTimer = 0;
+  let highTimer = 0;
+
+
   trigger.writeSync(0);
 
   console.log('Waiting for sensor to settle');
@@ -103,16 +108,21 @@ const test = async () => {
 
   while (echo.readSync() === 0) {
     startTime = Date.now();
+    lowTimer += 1;
   }
 
   while (echo.readSync() === 1) {
     endTime = Date.now();
+    highTimer += 1;
   }
 
   const duration = endTime - startTime;
   console.log('Duration:', duration);
   const distance = Math.round(duration * 17150);
   console.log('Distance:', distance, 'cm');
+
+  console.log('Low:', lowTimer);
+  console.log('High:', highTimer);
 }
 
 test();
