@@ -85,35 +85,35 @@ const test = async () => {
 
   console.log('echoooooo2', echo.readSync());
 
-  await sleep(0.01);
+  await sleep(1);
 
   console.log('echoooooo3', echo.readSync());
 
-  await sleep(0.01);
+  await sleep(10);
 
   console.log('echoooooo4', echo.readSync());
 
-  await sleep(0.01);
+  await sleep(100);
 
   console.log('echoooooo5', echo.readSync());
 
-  await sleep(0.04);
+  await sleep(1000);
 
   console.log('echoooooo6', echo.readSync());
 
-  await sleep(0.1);
+  await sleep(1000);
 
   console.log('echoooooo7', echo.readSync());
 
-  await sleep(0.1);
+  await sleep(1000);
 
   console.log('echoooooo8', echo.readSync());
 
-  await sleep(1);
+  await sleep(1000);
 
   console.log('echoooooo9', echo.readSync());
 
-  await sleep(10);
+  await sleep(1000);
 
   console.log('echoooooo10', echo.readSync());
 }
