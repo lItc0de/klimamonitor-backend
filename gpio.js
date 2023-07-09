@@ -13,7 +13,7 @@
 const Gpio = require('onoff').Gpio;
 
 const trigger = new Gpio(17, 'out');
-const echo = new Gpio(24, 'in', 'both');
+const echo = new Gpio(24, 'in');
 
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
