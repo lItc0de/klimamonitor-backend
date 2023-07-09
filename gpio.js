@@ -107,12 +107,12 @@ const test = async () => {
   trigger.writeSync(0);
 
   while (echo.readSync() === 0) {
-    startTime = Date.now();
+    startTime = performance.now();
     lowTimer += 1;
   }
 
   while (echo.readSync() === 1) {
-    endTime = Date.now();
+    endTime = performance.now();
     highTimer += 1;
   }
 
