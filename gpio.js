@@ -110,6 +110,7 @@ const test = async () => {
   }
 
   const duration = endTime - startTime;
+  console.log('Duration:', duration);
   const distance = Math.round(duration * 17150);
   console.log('Distance:', distance, 'cm');
 }
