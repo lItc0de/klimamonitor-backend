@@ -71,11 +71,56 @@ const getDistance = async () => {
   return distance;
 }
 
-console.log('echoooooo', echo.readSync());
+// console.log('echoooooo', echo.readSync());
 
-const interval = setInterval(getDistance, 2000);
+// const interval = setInterval(getDistance, 2000);
 
-console.log('echoooooo 2', echo.readSync());
+
+const test = async () => {
+  console.log('echoooooo1', echo.readSync());
+
+  trigger.writeSync(1);
+  await sleep(0.01);
+  trigger.writeSync(0);
+
+  console.log('echoooooo2', echo.readSync());
+
+  await sleep(0.01);
+
+  console.log('echoooooo3', echo.readSync());
+
+  await sleep(0.01);
+
+  console.log('echoooooo4', echo.readSync());
+
+  await sleep(0.01);
+
+  console.log('echoooooo5', echo.readSync());
+
+  await sleep(0.04);
+
+  console.log('echoooooo6', echo.readSync());
+
+  await sleep(0.1);
+
+  console.log('echoooooo7', echo.readSync());
+
+  await sleep(0.1);
+
+  console.log('echoooooo8', echo.readSync());
+
+  await sleep(0.1);
+
+  console.log('echoooooo9', echo.readSync());
+
+  await sleep(1);
+
+  console.log('echoooooo10', echo.readSync());
+}
+
+
+
+test();
 
 process.on('SIGINT', (_) => {
   trigger.unexport();
