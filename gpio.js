@@ -81,7 +81,6 @@ const test = async () => {
 
   trigger.writeSync(1);
   await sleep(0.01);
-  trigger.writeSync(0);
 
   console.log('echoooooo2', echo.readSync());
 
@@ -112,6 +111,8 @@ const test = async () => {
   await sleep(1000);
 
   console.log('echoooooo9', echo.readSync());
+
+  trigger.writeSync(0);
 
   await sleep(1000);
 
