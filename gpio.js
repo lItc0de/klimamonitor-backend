@@ -87,8 +87,6 @@ const getDistance = async () => {
 // const interval = setInterval(getDistance, 2000);
 
 const test = async () => {
-  testLed.writeSync(1);
-
   console.log('echoooooo1', echo.readSync());
 
   trigger.writeSync(1);
