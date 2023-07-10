@@ -3,6 +3,7 @@ const https = require('https');
 const fs = require('fs');
 
 const { Server } = require('socket.io');
+const { measureDistance } = require('./distanceMeasurement');
 
 const key = fs.readFileSync('ca.key', 'utf-8');
 const cert = fs.readFileSync('ca.crt', 'utf-8');
@@ -13,10 +14,23 @@ server = https.createServer({ key, cert }, app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://localhost:5173',
+    // origin: 'https://localhost:5173',
+    origin: 'https://192.168.1.208:5173',
     methods: ['GET', 'POST'],
   },
 });
+
+
+const updateDistance = async () => {
+  const distance = await measureDistance();
+
+  console.log('distance:', distance);
+  io.emit('distance', distance);
+};
+
+updateDistance();
+
+const interval = setInterval(updateDistance, 500);
 
 app.get('/', (req, res) => {
   res.send('hello');
@@ -24,21 +38,13 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+});
 
-  // socket.emit('distance', 2000);
+process.on('SIGINT', (_) => {
+  clearInterval(interval);
+  server.close();
 });
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
 });
-
-let distance = 3;
-
-const updateDistance = () => {
-  io.emit('distance', distance);
-  distance += 50;
-
-  if (distance >= 3000) clearInterval(interval);
-}
-
-const interval = setInterval(updateDistance, 500);

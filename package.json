@@ -4,10 +4,8 @@
   "description": "Uni project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "led": "node gpio.js",
-    "gpio": "node gpio2.js"
+    "start": "node js/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
