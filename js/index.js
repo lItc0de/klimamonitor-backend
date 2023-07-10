@@ -24,13 +24,13 @@ const io = new Server(server, {
 const updateDistance = async () => {
   const distance = await measureDistance();
 
-  console.log('distance:', distance);
+  // console.log('distance:', distance);
   io.emit('distance', distance);
 };
 
 updateDistance();
 
-const interval = setInterval(updateDistance, 1500);
+const interval = setInterval(updateDistance, 500);
 
 app.get('/', (req, res) => {
   res.send('hello');
