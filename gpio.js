@@ -106,7 +106,7 @@ const test = async () => {
     console.log('Change', value);
   });
 
-  startTime = process.hrtime();
+  // startTime = process.hrtime();
 
   while (echo.readSync() === 0) {
     startTime = process.hrtime();
