@@ -36,6 +36,10 @@ app.get('/', (req, res) => {
   res.send('hello');
 });
 
+app.all(('*'), (req, res) => {
+  console.log('incoming', req.hostname);
+})
+
 io.on('connection', (socket) => {
   console.log('a user connected');
 });
