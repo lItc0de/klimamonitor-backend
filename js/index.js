@@ -30,7 +30,7 @@ const updateDistance = async () => {
 
 updateDistance();
 
-const interval = setInterval(updateDistance, 500);
+const interval = setInterval(updateDistance, 1500);
 
 app.get('/', (req, res) => {
   res.send('hello');
