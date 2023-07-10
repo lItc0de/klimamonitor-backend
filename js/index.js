@@ -44,11 +44,15 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 });
 
-process.on('SIGINT', (_) => {
-  clearInterval(interval);
-  server.close();
-});
-
 server.listen(3000, () => {
   console.log('listening on *:3000');
 });
+
+
+process.on('SIGINT', (_) => {
+  console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
+  clearInterval(interval);
+  server.close();
+  process.exit(0);
+});
+
