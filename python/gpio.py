@@ -17,7 +17,7 @@ def getDistance():
 
   # print("Waiting for sensor to settle")
 
-  time.sleep(0.2)
+  time.sleep(0.3)
 
   # print("Calculating distance")
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
       dist = getDistance()
       print(dist)
       sys.stdout.flush()
-      time.sleep(0.2)
+      time.sleep(0.5)
 
     # Reset by pressing CTRL + C
   except KeyboardInterrupt:
