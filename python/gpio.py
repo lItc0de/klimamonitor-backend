@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import time
+import sys
 import RPi.GPIO as GPIO
 
 def getDistance():
@@ -35,8 +36,6 @@ def getDistance():
   distance = round(pulse_duration * 17150, 2)
   # print("Distance:",distance,"cm")
 
-  print(distance);
-
   return distance
 
 
@@ -45,6 +44,7 @@ if __name__ == '__main__':
     while True:
       dist = getDistance()
       print(dist)
+      sys.stdout.flush()
       time.sleep(0.2)
 
     # Reset by pressing CTRL + C

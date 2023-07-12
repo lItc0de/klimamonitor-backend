@@ -47,7 +47,6 @@ server.listen(3000, () => {
 
 process.on('SIGINT', (_) => {
   console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
-  clearInterval(interval);
   server.close();
   process.exit(0);
 });
