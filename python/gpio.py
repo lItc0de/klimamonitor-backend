@@ -43,7 +43,7 @@ if __name__ == '__main__':
     while True:
       dist = getDistance()
       print(dist)
-      time.sleep(1)
+      time.sleep(0.2)
 
     # Reset by pressing CTRL + C
   except KeyboardInterrupt:

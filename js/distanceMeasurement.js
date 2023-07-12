@@ -7,6 +7,7 @@ const measureDistance = (emitCallback) => {
 
     python.stdout.on('data', function (data) {
       const distance = data.toString();
+      console.log('stdout', distance);
       emitCallback(distance);
     });
 
