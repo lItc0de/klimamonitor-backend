@@ -21,8 +21,13 @@ const io = new Server(server, {
 });
 
 const emitDistance = (distance) => {
+  'emit distance'
   io.emit('distance', distance);
 }
+
+measureDistance(emitDistance).then(() => {
+  console.log('Measurement stopped');
+});
 
 app.get('/', (req, res) => {
   res.send('hello');
@@ -38,10 +43,6 @@ io.on('connection', (socket) => {
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
-});
-
-measureDistance(emitDistance).then(() => {
-  console.log('Measurement stopped');
 });
 
 process.on('SIGINT', (_) => {
