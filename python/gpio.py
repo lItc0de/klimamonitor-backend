@@ -35,6 +35,8 @@ def getDistance():
   distance = round(pulse_duration * 17150, 2)
   # print("Distance:",distance,"cm")
 
+  print(distance);
+
   return distance
 
 
