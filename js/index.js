@@ -20,17 +20,9 @@ const io = new Server(server, {
   },
 });
 
-
-const updateDistance = async () => {
-  const distance = await measureDistance();
-
-  // console.log('distance:', distance);
+const emitDistance = (distance) => {
   io.emit('distance', distance);
-};
-
-updateDistance();
-
-const interval = setInterval(updateDistance, 500);
+}
 
 app.get('/', (req, res) => {
   res.send('hello');
@@ -48,6 +40,9 @@ server.listen(3000, () => {
   console.log('listening on *:3000');
 });
 
+measureDistance(emitDistance).then(() => {
+  console.log('Measurement stopped');
+});
 
 process.on('SIGINT', (_) => {
   console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
