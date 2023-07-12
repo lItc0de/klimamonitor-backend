@@ -21,7 +21,6 @@ const io = new Server(server, {
 });
 
 const emitDistance = (distance) => {
-  'emit distance'
   io.emit('distance', distance);
 }
 

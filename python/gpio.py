@@ -17,7 +17,7 @@ def getDistance():
 
   # print("Waiting for sensor to settle")
 
-  time.sleep(2)
+  time.sleep(0.2)
 
   # print("Calculating distance")
 
