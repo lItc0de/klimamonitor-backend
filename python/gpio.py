@@ -51,10 +51,10 @@ if __name__ == '__main__':
 
       averageDistance = statistics.median(distances)
 
-      print(distances)
+      # print(distances)
       print(averageDistance)
       sys.stdout.flush()
-      time.sleep(0.2)
+      time.sleep(0.5)
 
     # Reset by pressing CTRL + C
   except KeyboardInterrupt:
