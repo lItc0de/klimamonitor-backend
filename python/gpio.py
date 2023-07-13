@@ -2,6 +2,7 @@
 
 import time
 import sys
+import statistics
 import RPi.GPIO as GPIO
 
 def getDistance():
@@ -48,7 +49,7 @@ if __name__ == '__main__':
       distances.append(dist)
       distances = distances[-5:]
 
-      averageDistance = sum(distances) / 5
+      averageDistance = statistics.median(distances)
 
       print(distances)
       print(averageDistance)
