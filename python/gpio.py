@@ -54,7 +54,7 @@ if __name__ == '__main__':
       print(distances)
       print(averageDistance)
       sys.stdout.flush()
-      time.sleep(0.5)
+      time.sleep(0.2)
 
     # Reset by pressing CTRL + C
   except KeyboardInterrupt:
