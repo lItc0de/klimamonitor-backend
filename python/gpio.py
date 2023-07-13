@@ -40,10 +40,17 @@ def getDistance():
 
 
 if __name__ == '__main__':
+  distances = []
+
   try:
     while True:
       dist = getDistance()
-      print(dist)
+      distances.append(dist)
+      distances = distances[-3:]
+
+      averageDistance = sum(distances) / 3
+
+      print(averageDistance)
       sys.stdout.flush()
       time.sleep(0.5)
 
