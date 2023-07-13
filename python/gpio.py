@@ -46,10 +46,11 @@ if __name__ == '__main__':
     while True:
       dist = getDistance()
       distances.append(dist)
-      distances = distances[-3:]
+      distances = distances[-5:]
 
-      averageDistance = sum(distances) / 3
+      averageDistance = sum(distances) / 5
 
+      print(distances)
       print(averageDistance)
       sys.stdout.flush()
       time.sleep(0.5)
