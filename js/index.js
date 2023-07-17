@@ -5,8 +5,8 @@ const fs = require('fs');
 const { Server } = require('socket.io');
 const { measureDistance } = require('./distanceMeasurement');
 
-const key = fs.readFileSync('ca.key', 'utf-8');
-const cert = fs.readFileSync('ca.crt', 'utf-8');
+const key = fs.readFileSync('cert.key', 'utf-8');
+const cert = fs.readFileSync('cert.crt', 'utf-8');
 
 const app = express();
 
