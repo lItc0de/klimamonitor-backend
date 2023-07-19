@@ -2,6 +2,8 @@ const express = require('express');
 const https = require('https');
 const fs = require('fs');
 
+require('dotenv').config()
+
 const { Server } = require('socket.io');
 const { measureDistance } = require('./distanceMeasurement');
 
@@ -14,8 +16,7 @@ server = https.createServer({ key, cert }, app);
 
 const io = new Server(server, {
   cors: {
-    // origin: 'https://localhost:5173',
-    origin: 'https://192.168.1.208:5173',
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST'],
   },
 });
